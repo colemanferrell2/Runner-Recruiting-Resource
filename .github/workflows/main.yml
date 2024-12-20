@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main # Ensure this matches your default branch
-
+      workflow_dispatch: # Allows manual triggering of the workflow
 jobs:
   deploy:
     runs-on: ubuntu-latest
