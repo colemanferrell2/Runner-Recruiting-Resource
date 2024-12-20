@@ -9,7 +9,6 @@ export function SavedAthletesProvider({ children }) {
   const { user } = useAuth();
   const [savedAthletes, setSavedAthletes] = useState([]);
 
-  // Memoize loadAthletes to prevent recreation on each render
   const loadAthletes = useCallback(async () => {
     if (user) {
       const docRef = doc(db, "savedAthletes", user.uid);
@@ -18,7 +17,7 @@ export function SavedAthletesProvider({ children }) {
         setSavedAthletes(docSnap.data().athletes || []);
       }
     }
-  }, [user]); // Memoize based on `user`
+  }, [user]); // Memoize loadAthletes based on `user`
 
   const saveAthletesToDb = async (athletes) => {
     if (user) {
@@ -39,8 +38,8 @@ export function SavedAthletesProvider({ children }) {
   };
 
   useEffect(() => {
-    loadAthletes(); // Safely call the memoized loadAthletes function
-  }, [loadAthletes]); // Include loadAthletes in the dependency array
+    loadAthletes();
+  }, [loadAthletes]); // Include `loadAthletes` as a dependency
 
   return (
     <SavedAthletesContext.Provider value={{ savedAthletes, addAthlete, unsaveAthlete }}>
@@ -52,4 +51,3 @@ export function SavedAthletesProvider({ children }) {
 export function useSavedAthletes() {
   return useContext(SavedAthletesContext);
 }
-
