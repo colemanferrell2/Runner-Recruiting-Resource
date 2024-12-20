@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import * as dotenv from "dotenv";
 
 if (process.env.NODE_ENV === "development") {
   dotenv.config(); // Load .env variables during development
