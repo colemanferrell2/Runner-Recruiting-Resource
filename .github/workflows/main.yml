@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16' # Specify your Node.js version
+          node-version: '18' # Use Node.js v18 for Firebase CLI compatibility
 
       # Step 3: Install dependencies
       - name: Install dependencies
