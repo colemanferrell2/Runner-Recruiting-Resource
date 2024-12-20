@@ -36,6 +36,10 @@ jobs:
           echo "REACT_APP_FIREBASE_APP_ID=${{ secrets.FIREBASE_APP_ID }}" >> .env
           echo "REACT_APP_FIREBASE_MEASUREMENT_ID=${{ secrets.FIREBASE_MEASUREMENT_ID }}" >> .env
 
+      # Step 4.1: Debug .env file
+      - name: Debug .env file
+        run: cat .env
+
       # Step 5: Build the React app
       - name: Build React app
         env:
@@ -56,4 +60,3 @@ jobs:
         run: |
           npm install -g firebase-tools
           firebase deploy --only hosting
-
