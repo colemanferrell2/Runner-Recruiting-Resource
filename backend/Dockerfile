@@ -1,4 +1,4 @@
-# Use a smaller base image for R (precompiled)
+# Use a smaller base image for R (precompiled) Smaller R
 FROM rocker/r-ver:4.0.0
 
 # Metadata
