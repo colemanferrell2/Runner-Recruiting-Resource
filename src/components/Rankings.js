@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Box, Typography, Button } from "@mui/material";
 import Filters from "./Filters";
-import axios from "axios";
+import axios from "axios"; // You may want to use axios for API calls
 import { useSavedAthletes } from "./context/SavedAthletesContext";
 
 const columns = (toggleSaveAthlete, savedAthletes) => [
@@ -33,7 +33,7 @@ const columns = (toggleSaveAthlete, savedAthletes) => [
   },
 ];
 
-function Rankings() {
+function Rankings({ apiUrl }) {
   const [rows, setRows] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   const [selectedClassYear, setSelectedClassYear] = useState([]);
@@ -44,8 +44,9 @@ function Rankings() {
   const { savedAthletes, toggleSaveAthlete } = useSavedAthletes();
 
   useEffect(() => {
+    // Fetch data from Cloud Run API
     axios
-      .get("/data/finalMenBestE.json")
+      .get(`${apiUrl}/Data/finalMenBestE.json`) // Replace with the correct endpoint
       .then((response) => {
         const data = response.data.map((item, index) => ({
           id: index + 1,
@@ -65,7 +66,7 @@ function Rankings() {
         console.error("Error loading data:", error);
         setLoading(false);
       });
-  }, []);
+  }, [apiUrl]);
 
   const filteredRows = rows.filter((row) => {
     const stateMatch = !selectedState || row.state === selectedState;

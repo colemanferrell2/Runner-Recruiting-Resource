@@ -1,33 +1,15 @@
-# Use a smaller base image for R (precompiled) Smaller R
-FROM rocker/r-ver:4.0.0
-
-# Metadata
-LABEL org.opencontainers.image.authors="barret@rstudio.com"
-
-# Install necessary system dependencies in a single layer and clean up
-RUN apt-get update -qq && apt-get install -y --no-install-recommends \
-  libssl-dev \
-  libsodium-dev \
-  && rm -rf /var/lib/apt/lists/* \
-  && apt-get clean
+FROM rstudio/plumber
+# Install the R package `pacman`:
+RUN R -e "install.packages('pacman')"
 
 # Install essential R packages (without extra ones)
 RUN R -e "install.packages(c('plumber', 'dplyr', 'readxl', 'data.table'))"
 
-# Expose the port for Plumber API
-EXPOSE 8080
-
-# Set the working directory
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy only the necessary application files
-COPY plumber.R /app/plumber.R
+# Copy the local 'backend' directory files into the container's '/app' directory
+COPY . /app
 
-# Copy the Data folder containing your .RData files into the container
-COPY Data/ /app/Data/
-
-# Clean up unnecessary dependencies and caches
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Run the Plumber API on the correct port
-CMD ["R", "-e", "pr <- plumber::plumb('/app/plumber.R'); pr$run(host = '0.0.0.0', port = as.numeric(Sys.getenv('PORT', '8080')) )"]
+# Set the command to run the Plumber API on container startup
+CMD ["Rscript", "/app/plumber.R"]

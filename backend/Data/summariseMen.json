@@ -1,0 +1,50 @@
+[
+  {
+    "Stars": "<span style='font-size:200%;color:yellow;'>&starf;<\/span><span style='font-size:200%;color:yellow;'>&starf;<\/span><span style='font-size:200%;color:yellow;'>&starf;<\/span><span style='font-size:200%;color:yellow;'>&starf;<\/span><span style='font-size:200%;color:yellow;'>&starf;<\/span>",
+    "Score": "90+",
+    "800m": "1:50.93 and faster",
+    "1600m": "4:04.79 and faster",
+    "3200m": "8:44.59 and faster",
+    "5000m": "14:00.01 and faster"
+  },
+  {
+    "Stars": "<span style='font-size:200%;color:yellow;'>&starf;<\/span><span style='font-size:200%;color:yellow;'>&starf;<\/span><span style='font-size:200%;color:yellow;'>&starf;<\/span><span style='font-size:200%;color:yellow;'>&starf;<\/span>",
+    "Score": "80-89.9",
+    "800m": "1:50.94-1:54.57",
+    "1600m": "4:04.80-4:13.40",
+    "3200m": "8:44.60-9:03.83",
+    "5000m": "14:00.02-14:30.80"
+  },
+  {
+    "Stars": "<span style='font-size:200%;color:yellow;'>&starf;<\/span> <span style='font-size:200%;color:yellow;'>&starf;<\/span><span style='font-size:200%;color:yellow;'>&starf;<\/span>",
+    "Score": "75-79.9",
+    "800m": "1:54.58-1:56.47",
+    "1600m": "4:13.41-4:17.88",
+    "3200m": "9:03.84-9:13.85",
+    "5000m": "14:30.81-14:46.83"
+  },
+  {
+    "Stars": "<span style='font-size:200%;color:yellow;'>&starf;<\/span><span style='font-size:200%;color:yellow;'>&starf;<\/span>",
+    "Score": "70-74.9",
+    "800m": "1:56.48-1:58.43",
+    "1600m": "4:17.89-4:22.49",
+    "3200m": "9:13.86-9:24.18",
+    "5000m": "14:46.84-15:03.35"
+  },
+  {
+    "Stars": "<span style='font-size:200%;color:yellow;'>&starf;<\/span>",
+    "Score": "60-69.9",
+    "800m": "1:58.44-2:02.53",
+    "1600m": "4:22.50-4:32.20",
+    "3200m": "9:24.19-9:45.84",
+    "5000m": "15:03.36-15:38.01"
+  },
+  {
+    "Stars": "No Stars",
+    "Score": "60",
+    "800m": "2:02.54 and slower",
+    "1600m": "4:32.21 and slower",
+    "3200m": "9:45.85 and slower",
+    "5000m": "15:38.02 and slower"
+  }
+]

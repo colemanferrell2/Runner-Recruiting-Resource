@@ -13,10 +13,9 @@ import Footer from "./components/Footer";
 import "./App.css";
 import LoginPage from "./components/LoginPage";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 
-const db = getFirestore();
-connectFirestoreEmulator(db, "localhost", 3000);
+// API URL from Cloud Run (replace with your Cloud Run URL)
+const apiUrl = process.env.REACT_APP_API_URL || "https://my-plumber-api-66599494740.us-central1.run.app"; // Replace with your Cloud Run URL
 
 function App() {
   return (
@@ -54,16 +53,14 @@ function App() {
                   <Route
                     path="/rankings"
                     element={
-                      
-                        <Rankings />
-                      
+                      <Rankings apiUrl={apiUrl} /> // Pass apiUrl to Rankings component
                     }
                   />
                   <Route
                     path="/scoring"
                     element={
                       <ProtectedRoute>
-                        <Scoring />
+                        <Scoring apiUrl={apiUrl} /> // Pass apiUrl to Scoring component
                       </ProtectedRoute>
                     }
                   />
@@ -71,7 +68,7 @@ function App() {
                     path="/saved"
                     element={
                       <ProtectedRoute>
-                        <SavedAthletes />
+                        <SavedAthletes apiUrl={apiUrl} /> // Pass apiUrl to SavedAthletes component
                       </ProtectedRoute>
                     }
                   />
