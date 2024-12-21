@@ -1,25 +1,25 @@
 # plumber.R
 library(plumber)
 library(dplyr)
-library(readxl)
-library(lubridate)
-library(DT)
-library(googlesheets4)
+#library(readxl)
+#library(lubridate)
+#library(DT)
 library(data.table)
+#library(googlesheets4)
 
 # Load necessary data
-load("Mile.Rdata")
-load("Mile1.Rdata")
-load("MenCalcTable.Rdata")
-load("MenViewTable.Rdata")
-load("WomenCalcTable.Rdata")
-load("WomenViewTable.Rdata")
-load("finalMenBest.Rdata")
-load("finalMenBestE.Rdata")
-load("summariseMen.Rdata")
-load("finalsMenBest.Rdata")
-load("finalsMenBestE.Rdata")
-load("summariseWomen.Rdata")
+load("Data/Mile.Rdata")
+load("Data/Mile1.Rdata")
+load("Data/MenCalcTable.Rdata")
+load("Data/MenViewTable.Rdata")
+load("Data/WomenCalcTable.Rdata")
+load("Data/WomenViewTable.Rdata")
+load("Data/finalMenBest.Rdata")
+load("Data/finalMenBestE.Rdata")
+load("Data/summariseMen.Rdata")
+load("Data/finalsMenBest.Rdata")
+load("Data/finalsMenBestE.Rdata")
+load("Data/summariseWomen.Rdata")
 
 #* @filter cors
 cors <- function(req, res) {
@@ -30,8 +30,8 @@ cors <- function(req, res) {
 }
 
 # Google Sheets setup
-gs4_auth(cache = ".secrets", email = "colemanferrell2@gmail.com")
-SHEET_ID <- "1RVOeXVx7cMJmys94HwwxKEs74pb-mx-OxjWhOsiKl64"
+#gs4_auth(cache = ".secrets", email = "colemanferrell2@gmail.com")
+#SHEET_ID <- "1RVOeXVx7cMJmys94HwwxKEs74pb-mx-OxjWhOsiKl64"
 
 #* @apiTitle Plumber API for Rankings App
 #* @apiDescription Backend for the converted Shiny app.
@@ -266,3 +266,17 @@ function() {
   
   star_criteria
 }
+
+# Directly load the plumber API from the known file path inside the Docker container
+pr <- plumber::plumb("/app/plumber.R")  # This is the fixed path inside the Docker container
+
+args <- list(host = '0.0.0.0', port = 8080)
+
+if (packageVersion('plumber') >= '1.0.0') {
+  pr$setDocs(TRUE)
+} else {
+  args$swagger <- TRUE
+}
+
+do.call(pr$run, args)
+

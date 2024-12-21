@@ -54,9 +54,9 @@ function App() {
                   <Route
                     path="/rankings"
                     element={
-                      <ProtectedRoute>
+                      
                         <Rankings />
-                      </ProtectedRoute>
+                      
                     }
                   />
                   <Route
