@@ -60,7 +60,7 @@ function App() {
                     path="/scoring"
                     element={
                       <ProtectedRoute>
-                        <Scoring apiUrl={apiUrl} /> // Pass apiUrl to Scoring component
+                        <Scoring apiUrl={apiUrl} />
                       </ProtectedRoute>
                     }
                   />
@@ -68,7 +68,7 @@ function App() {
                     path="/saved"
                     element={
                       <ProtectedRoute>
-                        <SavedAthletes apiUrl={apiUrl} /> // Pass apiUrl to SavedAthletes component
+                        <SavedAthletes apiUrl={apiUrl} /> 
                       </ProtectedRoute>
                     }
                   />
