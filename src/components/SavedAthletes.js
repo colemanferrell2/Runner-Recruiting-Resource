@@ -5,7 +5,17 @@ import { useSavedAthletes } from "./context/SavedAthletesContext";
 
 const columns = (unsaveAthlete) => [
   { field: "rank", headerName: "Rank", width: 90 },
-  { field: "name", headerName: "Name", width: 200 },
+  {
+    field: "name",
+    headerName: "Name",
+    width: 200,
+    renderCell: (params) => (
+      <div
+        dangerouslySetInnerHTML={{ __html: params.value }}
+        style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+      />
+    ),
+  },
   { field: "classYear", headerName: "Class Year", width: 130 },
   { field: "state", headerName: "State", width: 100 },
   { field: "school", headerName: "School", width: 200 },
@@ -17,7 +27,11 @@ const columns = (unsaveAthlete) => [
     headerName: "Unsave",
     width: 150,
     renderCell: (params) => (
-      <Button variant="contained" color="error" onClick={() => unsaveAthlete(params.row.id)}>
+      <Button
+        variant="contained"
+        color="error"
+        onClick={() => unsaveAthlete(params.row.id)}
+      >
         Unsave
       </Button>
     ),

@@ -17,7 +17,7 @@ export function SavedAthletesProvider({ children }) {
         setSavedAthletes(docSnap.data().athletes || []);
       }
     }
-  }, [user]); // Memoize loadAthletes based on `user`
+  }, [user]);
 
   const saveAthletesToDb = async (athletes) => {
     if (user) {
@@ -37,12 +37,22 @@ export function SavedAthletesProvider({ children }) {
     saveAthletesToDb(updated);
   };
 
+  const toggleSaveAthlete = (athlete) => {
+    if (savedAthletes.some((a) => a.id === athlete.id)) {
+      unsaveAthlete(athlete.id);
+    } else {
+      addAthlete(athlete);
+    }
+  };
+
   useEffect(() => {
     loadAthletes();
-  }, [loadAthletes]); // Include `loadAthletes` as a dependency
+  }, [loadAthletes]);
 
   return (
-    <SavedAthletesContext.Provider value={{ savedAthletes, addAthlete, unsaveAthlete }}>
+    <SavedAthletesContext.Provider
+      value={{ savedAthletes, addAthlete, unsaveAthlete, toggleSaveAthlete }}
+    >
       {children}
     </SavedAthletesContext.Provider>
   );
