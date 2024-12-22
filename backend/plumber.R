@@ -147,3 +147,75 @@ function(event = NULL) {
   event_data <- finalsMenBestE %>% filter(topEvent == event)
   event_data
 }
+
+# Expose Mile dataset
+#* @get /Mile
+function() {
+  Mile
+}
+
+# Expose Mile1 dataset
+#* @get /Mile1
+function() {
+  Mile1
+}
+
+# Expose MenCalcTable dataset
+#* @get /MenCalcTable
+function() {
+  MenCalcTable
+}
+
+# Expose MenViewTable dataset
+#* @get /MenViewTable
+function() {
+  MenViewTable
+}
+
+# Expose WomenCalcTable dataset
+#* @get /WomenCalcTable
+function() {
+  WomenCalcTable
+}
+
+# Expose WomenViewTable dataset
+#* @get /WomenViewTable
+function() {
+  WomenViewTable
+}
+
+# Expose finalMenBest dataset
+#* @get /finalMenBest
+function() {
+  finalMenBest
+}
+
+# Expose finalMenBestE dataset
+#* @get /finalMenBestE
+function() {
+  finalMenBestE
+}
+
+# Expose summariseMen dataset
+#* @get /summariseMen
+function() {
+  summariseMen
+}
+
+# Expose finalsMenBest dataset
+#* @get /finalsMenBest
+function() {
+  finalsMenBest
+}
+
+# Expose finalsMenBestE dataset
+#* @get /finalsMenBestE
+function() {
+  finalsMenBestE
+}
+
+# Expose summariseWomen dataset
+#* @get /summariseWomen
+function() {
+  summariseWomen
+}
