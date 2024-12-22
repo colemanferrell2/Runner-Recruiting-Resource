@@ -46,7 +46,7 @@ function Rankings({ apiUrl }) {
   useEffect(() => {
     // Fetch data from Cloud Run API
     axios
-      .get(`${apiUrl}/Data/finalMenBestE.json`) // Replace with the correct endpoint
+      .get(`https://plumber-api-service-296748539603.us-central1.run.app/Data/finalMenBestE.json`) // Replace with the correct endpoint
       .then((response) => {
         const data = response.data.map((item, index) => ({
           id: index + 1,

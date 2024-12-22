@@ -6,10 +6,6 @@
 library(plumber)
 library(dplyr)
 library(data.table)
-# library(readxl)  # Uncomment if you need readxl
-# library(lubridate)  # Uncomment if you need lubridate
-# library(DT)  # Uncomment if you need DT
-# library(googlesheets4)  # Uncomment if you need googlesheets4
 
 # Load necessary data
 load("Data/Mile.Rdata")
@@ -59,11 +55,10 @@ function(req, res) {
 
 # Example of loading and filtering data
 #* @get /filter_data
-#* @param class Filters by class
-#* @param state Filters by state
-#* @param event Filters by event
+#* @param class:string Filters by class (e.g., "Freshman")
+#* @param state:string Filters by state (e.g., "NC")
+#* @param event:string Filters by event (e.g., "100m")
 function(class = NULL, state = NULL, event = NULL) {
-  print(paste("Class:", class, "State:", state))
   filtered_data <- finalMenBest
   
   if (!is.null(class)) {
@@ -95,10 +90,10 @@ function() {
 
 # Get detailed ranking data for Men
 #* @get /rankings_men
-#* @param class Filters by class
-#* @param state Filters by state
-#* @param score_min Minimum score
-#* @param score_max Maximum score
+#* @param class:string Filters by class (e.g., "Freshman")
+#* @param state:string Filters by state (e.g., "NC")
+#* @param score_min:double Minimum score (e.g., 85.5)
+#* @param score_max:double Maximum score (e.g., 99.0)
 function(class = NULL, state = NULL, score_min = NULL, score_max = NULL) {
   rankings <- finalMenBest
   
@@ -119,12 +114,12 @@ function(class = NULL, state = NULL, score_min = NULL, score_max = NULL) {
 
 # Get detailed ranking data for Women
 #* @get /rankings_women
-#* @param class Filters by class
-#* @param state Filters by state
-#* @param score_min Minimum score
-#* @param score_max Maximum score
+#* @param class:string Filters by class (e.g., "Freshman")
+#* @param state:string Filters by state (e.g., "NC")
+#* @param score_min:double Minimum score (e.g., 85.5)
+#* @param score_max:double Maximum score (e.g., 99.0)
 function(class = NULL, state = NULL, score_min = NULL, score_max = NULL) {
-  rankings <- finals
+  rankings <- finalsMenBest
   
   if (!is.null(class)) {
     rankings <- rankings %>% filter(Class %in% class)
@@ -143,14 +138,12 @@ function(class = NULL, state = NULL, score_min = NULL, score_max = NULL) {
 
 # Load event-specific data
 #* @get /event_data
-#* @param event Event name
+#* @param event:string Event name (e.g., "100m")
 function(event = NULL) {
   if (is.null(event)) {
     stop("Event parameter is required")
   }
   
-  event_data <- finals %>% filter(topEvent == event)
+  event_data <- finalsMenBestE %>% filter(topEvent == event)
   event_data
 }
-
-

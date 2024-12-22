@@ -15,7 +15,7 @@ import LoginPage from "./components/LoginPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 // API URL from Cloud Run (replace with your Cloud Run URL)
-const apiUrl = process.env.REACT_APP_API_URL || "https://my-plumber-api-66599494740.us-central1.run.app"; // Replace with your Cloud Run URL
+const apiUrl = process.env.REACT_APP_API_URL || "https://my-cloud-run-service-296748539603.us-central1.run.app"; // Replace with your Cloud Run URL
 
 function App() {
   return (
