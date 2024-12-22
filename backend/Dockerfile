@@ -5,11 +5,11 @@ RUN R -e "install.packages('pacman')"
 # Install essential R packages (without extra ones)
 RUN R -e "install.packages(c('plumber', 'dplyr', 'readxl', 'data.table'))"
 
-# Set the working directory in the container
+# Copy the Plumber API file into the container
+COPY plumber.R /app/plumber.R
+COPY plumber_run.R /app/plumber_run.R
+COPY Data /app/Data
 WORKDIR /app
 
-# Copy the local 'backend' directory files into the container's '/app' directory
-COPY . /app
-
-# Set the command to run the Plumber API on container startup
-CMD ["Rscript", "/app/plumber.R"]
+# Run the API
+CMD ["Rscript", "plumber_run.R"]
